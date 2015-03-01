@@ -6,6 +6,10 @@ using System.Text;
 
 namespace YumSale.Models
 {
+    /// <summary>
+    /// Light weight account, then where is not item attached, it should be delete
+    /// shouldn't need login
+    /// </summary>
     public class Buyer
     {
         public int Id { get; set; }
