@@ -9,7 +9,8 @@ namespace YumSale.Models
 {
     public class Item
     {
-        public int Id { get; set; }
+        [Key]
+        public int ItemId { get; set; }
         [Required]
         public string Name { get; set; }
 
