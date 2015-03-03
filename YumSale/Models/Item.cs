@@ -16,8 +16,6 @@ namespace YumSale.Models
 
         public string Descrption { get; set; }
 
-        public Url ImageUrl { get; set; }
-
         public int? BuyerId { get; set; }
 
         public virtual Buyer Buyer { get; set; }
