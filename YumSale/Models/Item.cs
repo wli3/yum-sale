@@ -17,7 +17,9 @@ namespace YumSale.Models
 
         public Url ImageUrl { get; set; }
 
-        public virtual Buyer Holder { get; set; }
+        public int? BuyerId { get; set; }
+
+        public virtual Buyer Buyer { get; set; }
 
         public DateTime CreateDateTime { get; set; }
 
