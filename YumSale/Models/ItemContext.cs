@@ -14,6 +14,8 @@ namespace YumSale.Models
 
         public void Seed(ItemContext context)
         {
+#if DEBUG
+            // Create my debug (testing) objects here
             var item1 = new Item()
             {
                 ItemId = 1,
@@ -43,6 +45,7 @@ namespace YumSale.Models
             context.Items.Add(item1);
             context.Items.Add(item2);
             context.Items.Add(item3);
+#endif
             context.SaveChanges();
         }
 

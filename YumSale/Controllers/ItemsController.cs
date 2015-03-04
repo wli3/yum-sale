@@ -48,7 +48,7 @@ namespace YumSale.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemId,Name,Descrption,BuyerId,CreateDateTime,HoldTime,HoldLong")] Item item)
+        public ActionResult Create([Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLong")] Item item)
         {
             if (ModelState.IsValid)
             {
