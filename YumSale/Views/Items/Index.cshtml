@@ -21,6 +21,10 @@
             @Html.DisplayNameFor(model => model.Descrption)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+
+        <th>
             @Html.DisplayNameFor(model => model.BuyerId)
         </th>
         <th>
@@ -35,35 +39,51 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Buyer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrption)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuyerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoldTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoldLong)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ItemId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ItemId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ItemId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Buyer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descrption)
+            </td>
+            <td>
+            @{
+        try
+        {
+            WebRequest webRequest = WebRequest.Create(item.ImageUrl);
+            WebResponse webResponse = webRequest.GetResponse();
+            <img src=@item.ImageUrl alt="Item Image" />
+        }
+        catch //If exception thrown then couldn't get response from address
+        {
+            <text> no image</text>
+        }
+            }    
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoldTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoldLong)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.ItemId}) |
+                @Html.ActionLink("Details", "Details", new {id = item.ItemId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.ItemId})
+            </td>
+        </tr>
+    }
 
 </table>
