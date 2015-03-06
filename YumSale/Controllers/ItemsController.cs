@@ -13,9 +13,12 @@ namespace YumSale.Controllers
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         // GET: Items
+        [Authorize]
+
         public ActionResult Index()
         {
-            var items = db.Items.Include(i => i.Buyer);
+            var items = db.Users.Find(User.Identity.GetUserId()).Items;
+            //var items2 = db.Items.Include(i => i.Buyer);
             return View(items.ToList());
         }
 
