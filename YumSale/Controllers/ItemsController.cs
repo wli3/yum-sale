@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 using YumSale.Models;
 
 namespace YumSale.Controllers
@@ -54,6 +55,8 @@ namespace YumSale.Controllers
             if (ModelState.IsValid)
             {
                 db.Items.Add(item);
+                var user = db.Users.Find(User.Identity.GetUserId());
+                user.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
