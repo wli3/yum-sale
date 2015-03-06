@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,22 +15,28 @@ namespace YumSale.Controllers
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         // GET: Items
         [Authorize]
-
         public ActionResult Index()
         {
             var items = db.Users.Find(User.Identity.GetUserId()).Items;
-            //var items2 = db.Items.Include(i => i.Buyer);
+
             return View(items.ToList());
         }
 
         // GET: Items/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // TODO should be a way just each in db
+            var items = db.Users.Find(User.Identity.GetUserId()).Items;
             var item = db.Items.Find(id);
+            if (!items.Contains(item))
+            {
+                item = null;
+            }
             if (item == null)
             {
                 return HttpNotFound();
