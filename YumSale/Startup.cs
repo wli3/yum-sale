@@ -12,7 +12,7 @@ namespace YumSale
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            Database.SetInitializer(new DebugInitializer());
+           // Database.SetInitializer(new DebugInitializer());
 
         }
     }

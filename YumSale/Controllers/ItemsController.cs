@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using YumSale.Models;
 
 namespace YumSale.Controllers
@@ -33,6 +34,7 @@ namespace YumSale.Controllers
         }
 
         // GET: Items/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ItemId = new SelectList(db.Buyers, "ItemId", "Name");
@@ -44,6 +46,7 @@ namespace YumSale.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(
             [Bind(Include = "ItemId,Name,Descrption,CreateDateTime,ImageUrl,BuyerId,HoldTime,HoldLong")] Item item)
         {
