@@ -1,7 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using YumSale;
 
-[assembly: OwinStartupAttribute(typeof(YumSale.Startup))]
+[assembly: OwinStartup(typeof (Startup))]
+
 namespace YumSale
 {
     public partial class Startup

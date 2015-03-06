@@ -52,20 +52,20 @@
                 @Html.DisplayFor(modelItem => item.Descrption)
             </td>
             <td>
-            @{
-        try
-        {
-            WebRequest webRequest = WebRequest.Create(item.ImageUrl);
-            WebResponse webResponse = webRequest.GetResponse();
-            <img src=@item.ImageUrl alt="Item Image" />
-        }
-        catch //If exception thrown then couldn't get response from address
-        {
-            <text> no image</text>
-        }
-            }    
+                @{
+                    try
+                    {
+                        WebRequest webRequest = WebRequest.Create(item.ImageUrl);
+                        var webResponse = webRequest.GetResponse();
+                        <img src=@item.ImageUrl alt="Item Image"/>
+                    }
+                    catch //If exception thrown then couldn't get response from address
+                    {
+                        <text> no image</text>
+                    }
+                }
             </td>
-            
+
             <td>
                 @Html.DisplayFor(modelItem => item.BuyerId)
             </td>
