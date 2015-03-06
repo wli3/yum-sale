@@ -12,7 +12,7 @@ namespace YumSale.Controllers
 {
     public class ItemsController : Controller
     {
-        private ItemContext db = new ItemContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Items
         public ActionResult Index()
