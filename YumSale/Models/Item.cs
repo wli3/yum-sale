@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YumSale.Models
 {
@@ -17,7 +18,6 @@ namespace YumSale.Models
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-        public int? BuyerId { get; set; }
         public virtual Buyer Buyer { get; set; }
         public DateTime CreateDateTime { get; set; }
         public DateTime HoldTime { get; set; }

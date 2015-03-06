@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using YumSale.Models;
 
@@ -12,8 +9,7 @@ namespace YumSale.Controllers
 {
     public class ItemsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         // GET: Items
         public ActionResult Index()
         {
@@ -28,7 +24,7 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            var item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -48,7 +44,8 @@ namespace YumSale.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemId,Name,Descrption,CreateDateTime,ImageUrl,BuyerId,HoldTime,HoldLong")] Item item)
+        public ActionResult Create(
+            [Bind(Include = "ItemId,Name,Descrption,CreateDateTime,ImageUrl,BuyerId,HoldTime,HoldLong")] Item item)
         {
             item.CreateDateTime = DateTime.Now;
             if (ModelState.IsValid)
@@ -69,7 +66,7 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            var item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -83,7 +80,8 @@ namespace YumSale.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLong")] Item item)
+        public ActionResult Edit(
+            [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLong")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +100,7 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            var item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -115,7 +113,7 @@ namespace YumSale.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items.Find(id);
+            var item = db.Items.Find(id);
             db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
