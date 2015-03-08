@@ -44,6 +44,8 @@ namespace YumSale.Controllers
             return View(item);
         }
 
+        // TODO anonymous create
+
         // GET: Items/Create
         [Authorize]
         public ActionResult Create()
@@ -76,6 +78,7 @@ namespace YumSale.Controllers
         }
 
         // GET: Items/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,6 +99,7 @@ namespace YumSale.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(
             [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLong")] Item item)
         {
@@ -127,6 +131,7 @@ namespace YumSale.Controllers
         // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             var item = db.Items.Find(id);
