@@ -6,7 +6,7 @@ using System.Web;
 
 namespace YumSale.Models
 {
-    public class ItemViewModel
+    public class ItemCreateViewModel
     {
         [Key]
         public int ItemId { get; set; }
