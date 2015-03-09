@@ -20,21 +20,15 @@ namespace YumSale.Controllers
         public ActionResult Index()
         {
             var items = _db.Users.Find(User.Identity.GetUserId()).Items.ToList();
-            var itemIndexViewModels = new List<ItemIndexViewModel>();
-            foreach (var item in items )
-            {
-                var endTime = item.CreateDateTime
-                    .AddDays(item.HoldLongDay)
-                    .Add(item.HoldLongLessThanDay);
-
-                itemIndexViewModels.Add( new ItemIndexViewModel
-                {                 
-                    HolderName = (item.Buyer != null) ? item.Buyer.Name: null,
-                    EndTime = endTime,
+            var itemIndexViewModels = (from item in items
+                let endTime = item.CreateDateTime.AddDays(item.HoldLongDay)
+                .Add(item.HoldLongLessThanDay)
+                select new ItemIndexViewModel
+                {
+                    HolderName = (item.Buyer != null) ? item.Buyer.Name : null, 
+                    EndTime = endTime, 
                     Name = item.Name
-                });
-
-            }
+                }).ToList();
             return View(itemIndexViewModels);
         }
 
