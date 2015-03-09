@@ -31,17 +31,23 @@ namespace YumSale.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // TODO should be a way just each in db
+            var item = FindItemInCurrentUser(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        private Item FindItemInCurrentUser(int? id)
+        {
             var items = db.Users.Find(User.Identity.GetUserId()).Items;
             var item = db.Items.Find(id);
             if (!items.Contains(item))
             {
                 item = null;
             }
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            return View(item);
+            return item;
         }
 
         // TODO anonymous create
