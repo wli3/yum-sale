@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace YumSale.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", false)
@@ -17,7 +17,5 @@ namespace YumSale.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<YumSale.Models.ItemViewModel> ItemViewModels { get; set; }
     }
 }
