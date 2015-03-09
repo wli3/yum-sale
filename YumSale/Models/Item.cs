@@ -21,8 +21,11 @@ namespace YumSale.Models
         public int? BuyerId { get; set; }
 
         public virtual Buyer Buyer { get; set; }
-        public DateTime CreateDateTime { get; set; }
-        public DateTime HoldTime { get; set; }
+        public DateTime CreateDateTime { get; set; }       
+        public DateTime? HoldTime { get; set; }
+
+        [Display(Name = "Sale Last")]
         public TimeSpan HoldLong { get; set; }
+        public int HoldTimeDay { get; set; }
     }
 }

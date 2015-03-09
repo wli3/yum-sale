@@ -61,11 +61,20 @@ namespace YumSale.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Create(
-            [Bind(Include = "ItemId,Name,Descrption,CreateDateTime,ImageUrl,BuyerId,HoldTime,HoldLong")] Item item)
+            [Bind(Include = "ItemId,Name,Descrption,HoldLongDay,HoldLongHour,ImageUrl")] ItemViewModel itemViewModel)
         {
-            item.CreateDateTime = DateTime.Now;
+            var item = new Item();
             if (ModelState.IsValid)
             {
+                item.HoldLong = new TimeSpan(0, itemViewModel.HoldLongHour, 0, 0);
+                item.HoldTimeDay = itemViewModel.HoldLongDay;
+                item.CreateDateTime = DateTime.Now;
+                item.Descrption = itemViewModel.Descrption;
+                item.ItemId = itemViewModel.ItemId;
+                item.Name = itemViewModel.Name;
+                item.ImageUrl = itemViewModel.ImageUrl;
+
+                //var item = new Item { CreateDateTime = DateTime.Now };
                 db.Items.Add(item);
                 var user = db.Users.Find(User.Identity.GetUserId());
                 user.Items.Add(item);

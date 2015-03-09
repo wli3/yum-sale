@@ -17,5 +17,7 @@ namespace YumSale.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<YumSale.Models.ItemViewModel> ItemViewModels { get; set; }
     }
 }
