@@ -66,10 +66,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoldLong, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.HoldLongLessThanDay, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoldLong, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.HoldLong, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.HoldLongLessThanDay, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.HoldLongLessThanDay, "", new {@class = "text-danger"})
             </div>
         </div>
 

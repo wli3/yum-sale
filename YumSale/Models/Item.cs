@@ -25,7 +25,7 @@ namespace YumSale.Models
         public DateTime? HoldTime { get; set; }
 
         [Display(Name = "Sale Last")]
-        public TimeSpan HoldLong { get; set; }
-        public int HoldTimeDay { get; set; }
+        public TimeSpan HoldLongLessThanDay { get; set; }
+        public int HoldLongDay { get; set; }
     }
 }

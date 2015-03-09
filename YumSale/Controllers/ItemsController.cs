@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
@@ -12,14 +14,28 @@ namespace YumSale.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Items
         [Authorize]
         public ActionResult Index()
         {
-            var items = db.Users.Find(User.Identity.GetUserId()).Items;
+            var items = _db.Users.Find(User.Identity.GetUserId()).Items.ToList();
+            var itemIndexViewModels = new List<ItemIndexViewModel>();
+            foreach (var item in items )
+            {
+                var endTime = item.CreateDateTime
+                    .AddDays(item.HoldLongDay)
+                    .Add(item.HoldLongLessThanDay);
 
-            return View(items.ToList());
+                itemIndexViewModels.Add( new ItemIndexViewModel
+                {                 
+                    HolderName = (item.Buyer != null) ? item.Buyer.Name: null,
+                    EndTime = endTime,
+                    Name = item.Name
+                });
+
+            }
+            return View(itemIndexViewModels);
         }
 
         // GET: Items/Details/5
@@ -30,7 +46,7 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // TODO should be a way just each in db
+            // TODO should be a way just each in _db
             var item = FindItemInCurrentUser(id);
             if (item == null)
             {
@@ -41,8 +57,8 @@ namespace YumSale.Controllers
 
         private Item FindItemInCurrentUser(int? id)
         {
-            var items = db.Users.Find(User.Identity.GetUserId()).Items;
-            var item = db.Items.Find(id);
+            var items = _db.Users.Find(User.Identity.GetUserId()).Items;
+            var item = _db.Items.Find(id);
             if (!items.Contains(item))
             {
                 item = null;
@@ -56,7 +72,7 @@ namespace YumSale.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.ItemId = new SelectList(db.Buyers, "ItemId", "Name");
+            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name");
             return View();
         }
 
@@ -72,8 +88,8 @@ namespace YumSale.Controllers
             var item = new Item();
             if (ModelState.IsValid)
             {
-                item.HoldLong = new TimeSpan(0, itemCreateViewModel.HoldLongHour, 0, 0);
-                item.HoldTimeDay = itemCreateViewModel.HoldLongDay;
+                item.HoldLongLessThanDay = new TimeSpan(0, itemCreateViewModel.HoldLongHour, 0, 0);
+                item.HoldLongDay = itemCreateViewModel.HoldLongDay;
                 item.CreateDateTime = DateTime.Now;
                 item.Descrption = itemCreateViewModel.Descrption;
                 item.ItemId = itemCreateViewModel.ItemId;
@@ -81,14 +97,14 @@ namespace YumSale.Controllers
                 item.ImageUrl = itemCreateViewModel.ImageUrl;
 
                 //var item = new Item { CreateDateTime = DateTime.Now };
-                db.Items.Add(item);
-                var user = db.Users.Find(User.Identity.GetUserId());
+                _db.Items.Add(item);
+                var user = _db.Users.Find(User.Identity.GetUserId());
                 user.Items.Add(item);
-                db.SaveChanges();
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ItemId = new SelectList(db.Buyers, "ItemId", "Name", item.ItemId);
+            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name", item.ItemId);
             return View(item);
         }
 
@@ -100,12 +116,12 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var item = db.Items.Find(id);
+            var item = _db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemId = new SelectList(db.Buyers, "ItemId", "Name", item.ItemId);
+            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name", item.ItemId);
             return View(item);
         }
 
@@ -116,15 +132,15 @@ namespace YumSale.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Edit(
-            [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLong")] Item item)
+            [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLongLessThanDay")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(item).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ItemId = new SelectList(db.Buyers, "ItemId", "Name", item.ItemId);
+            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name", item.ItemId);
             return View(item);
         }
 
@@ -135,7 +151,7 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var item = db.Items.Find(id);
+            var item = _db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -149,9 +165,9 @@ namespace YumSale.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            var item = db.Items.Find(id);
-            db.Items.Remove(item);
-            db.SaveChanges();
+            var item = _db.Items.Find(id);
+            _db.Items.Remove(item);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -159,7 +175,7 @@ namespace YumSale.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

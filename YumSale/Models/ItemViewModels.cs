@@ -31,4 +31,18 @@ namespace YumSale.Models
         public int HoldLongHour { get; set; }
 
     }
+
+    public class ItemIndexViewModel
+    {
+        [Key]
+        public int ItemId { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        public DateTime EndTime { get; set; }
+
+        [Display(Name = "Holder Name")]
+        public string HolderName { get; set; }
+    }
 }
