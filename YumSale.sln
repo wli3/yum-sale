@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YumSale", "YumSale\YumSale.csproj", "{370AC673-E56E-4F6E-B7E6-043EF32AA6D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YumSaleTests", "YumSaleTests\YumSaleTests.csproj", "{8B734CCE-B8C5-4C89-B27E-FBBD1F9A03B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YumSaleTests", "YumSaleTests1\YumSaleTests.csproj", "{42607AE2-4064-48D6-8707-7EDC140E1357}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{370AC673-E56E-4F6E-B7E6-043EF32AA6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370AC673-E56E-4F6E-B7E6-043EF32AA6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370AC673-E56E-4F6E-B7E6-043EF32AA6D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B734CCE-B8C5-4C89-B27E-FBBD1F9A03B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B734CCE-B8C5-4C89-B27E-FBBD1F9A03B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B734CCE-B8C5-4C89-B27E-FBBD1F9A03B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B734CCE-B8C5-4C89-B27E-FBBD1F9A03B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42607AE2-4064-48D6-8707-7EDC140E1357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42607AE2-4064-48D6-8707-7EDC140E1357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42607AE2-4064-48D6-8707-7EDC140E1357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42607AE2-4064-48D6-8707-7EDC140E1357}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
