@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
@@ -17,7 +18,7 @@ namespace YumSale.Controllers
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Items
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(IPrincipal user)
         {
             var items = _db.Users.Find(User.Identity.GetUserId()).Items.ToList();
             var itemIndexViewModels = MapItemsForIndexView(items);
