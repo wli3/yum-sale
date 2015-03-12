@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YumSale.Controllers;
 using NUnit.Framework;
+using YumSale.Models;
+using Microsoft.AspNet.Identity;
+
 namespace YumSale.Controllers.Tests
 {
     [TestFixture()]
     public class ItemsControllerTests
     {
-        private string GoodName;
-        [SetUp]
-        public void InitFakeDbContext()
-        {
-            GoodName = "12387182381078124689dcf489xt6q3y489ufys3u8rsfy384tf8q73styf87";
-        }
+        //private ApplicationDbContext _fakeDbContext;
+        //[SetUp]
+        //public void InitFakeDbContext()
+        //{
+        //    DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
+
+        //    _fakeDbContext = new ApplicationDbContext(connection);
+
+        //}
 
         [Test()]
         public void IndexTest()
         {
-            Console.Write(GoodName);
 
         }
 

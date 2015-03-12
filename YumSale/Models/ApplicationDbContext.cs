@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Data.Common;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace YumSale.Models
@@ -7,6 +8,11 @@ namespace YumSale.Models
     {
         public ApplicationDbContext()
             : base("DefaultConnection", false)
+        {
+        }
+
+        public ApplicationDbContext(DbConnection connection)
+            : base(connection, true)
         {
         }
 
