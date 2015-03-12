@@ -7,22 +7,21 @@ using System.Threading.Tasks;
 using YumSale.Controllers;
 using NUnit.Framework;
 using YumSale.Models;
-using Microsoft.AspNet.Identity;
 
 namespace YumSale.Controllers.Tests
 {
     [TestFixture()]
     public class ItemsControllerTests
     {
-        //private ApplicationDbContext _fakeDbContext;
-        //[SetUp]
-        //public void InitFakeDbContext()
-        //{
-        //    DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
+        private ApplicationDbContext _fakeDbContext;
+        [SetUp]
+        public void InitFakeDbContext()
+        {
+            DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
 
-        //    _fakeDbContext = new ApplicationDbContext(connection);
+            _fakeDbContext = new ApplicationDbContext(connection);
 
-        //}
+        }
 
         [Test()]
         public void IndexTest()
