@@ -20,7 +20,8 @@ namespace YumSale.Controllers
         [Authorize]
         public ActionResult Index(IPrincipal user)
         {
-            var items = _db.Users.Find(User.Identity.GetUserId()).Items.ToList();
+            var currentUserId = user.Identity.GetUserId();
+            var items = _db.Users.Find(currentUserId).Items.ToList();
             var itemIndexViewModels = MapItemsForIndexView(items);
             return View(itemIndexViewModels);
         }
