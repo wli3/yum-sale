@@ -91,6 +91,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\ItemsControllerTests.cs" />
+    <Compile Include="FakeModel\Class1.cs" />
     <Compile Include="FakeModel\FakeClaimIdentity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -16,8 +16,8 @@ namespace YumSaleTests.FakeModel
             _fakeIdentity = new FakeIdentity(userName);
             base.AddClaims(new List<Claim>
             {
-                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", userName),
-                new Claim(ClaimTypes.Sid, id)
+                new Claim(ClaimTypes.Name, userName),
+                new Claim(ClaimTypes.NameIdentifier, id)
             });
         }
 
