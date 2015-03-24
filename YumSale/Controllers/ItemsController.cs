@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Security.Principal;
-using System.Transactions;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using YumSale.Models;
@@ -25,7 +21,7 @@ namespace YumSale.Controllers
         public ActionResult Index(IPrincipal user)
         {
             var currentUserId = user.Identity.GetUserId();
-            var items =_repository.FindItemsByUserId(currentUserId);
+            var items = _repository.FindItemsByUserId(currentUserId);
             var itemIndexViewModels = ItemIndexViewModel.MapItemsForIndexView(items);
             return View(itemIndexViewModels);
         }

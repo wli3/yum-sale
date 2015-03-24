@@ -39,13 +39,6 @@ namespace YumSale.Models
             ItemId = item.ItemId;
         }
 
-        public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
-        {
-            var itemIndexViewModels = (from item in items
-                                       select new ItemIndexViewModel(item)
-                                       ).ToList();
-            return itemIndexViewModels;
-        }
         [Key]
         public int ItemId { get; set; }
 
@@ -56,5 +49,13 @@ namespace YumSale.Models
 
         [Display(Name = "Holder Name")]
         public string HolderName { get; set; }
+
+        public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
+        {
+            var itemIndexViewModels = (from item in items
+                select new ItemIndexViewModel(item)
+                ).ToList();
+            return itemIndexViewModels;
+        }
     }
 }

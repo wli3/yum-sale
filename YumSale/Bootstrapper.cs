@@ -1,7 +1,4 @@
-using System.Data.Entity;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
 using Unity.Mvc3;
 using YumSale.Controllers;
@@ -24,7 +21,7 @@ namespace YumSale
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
-            
+
             // e.g. container.RegisterType<ITestService, TestService>();            
             container.RegisterType<IRepository, Repository>();
             container.RegisterType<AccountController>(new InjectionConstructor());
@@ -32,4 +29,4 @@ namespace YumSale
             return container;
         }
     }
-}   
+}

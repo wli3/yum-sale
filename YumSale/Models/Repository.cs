@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.Owin.Security;
 
 namespace YumSale.Models
 {
@@ -51,11 +49,6 @@ namespace YumSale.Models
             SaveChanges();
         }
 
-        public void SaveChanges()
-        {
-            _db.SaveChanges();
-        }
-
         public void MarkModified(Item item)
         {
             _db.Entry(item).State = EntityState.Modified;
@@ -72,6 +65,11 @@ namespace YumSale.Models
         public void Dispose()
         {
             _db.Dispose();
+        }
+
+        public void SaveChanges()
+        {
+            _db.SaveChanges();
         }
     }
 }
