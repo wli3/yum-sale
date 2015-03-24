@@ -13,12 +13,7 @@ namespace YumSale.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly ApplicationDbContext _db;
-
-        public ItemsController(ApplicationDbContext db)
-        {
-            _db = db;
-        }
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Items
         [Authorize]

@@ -98,8 +98,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="FakeClaimIdentity.cs" />
-    <Compile Include="Controllers\ItemsControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +109,9 @@
       <Project>{370AC673-E56E-4F6E-B7E6-043EF32AA6D4}</Project>
       <Name>YumSale</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
