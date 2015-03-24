@@ -6,15 +6,13 @@ namespace YumSaleTests
 {
     public class FakeClaimIdentity : ClaimsIdentity
     {
-
         private readonly FakeIdentity _fakeIdentity;
-
 
         public FakeClaimIdentity(string id, string userName)
             : base(userName)
         {
             _fakeIdentity = new FakeIdentity(userName);
-            base.AddClaims(new List<Claim>
+            AddClaims(new List<Claim>
             {
                 new Claim(ClaimTypes.Name, userName),
                 new Claim(ClaimTypes.NameIdentifier, id)
@@ -33,10 +31,7 @@ namespace YumSaleTests
 
         public override string AuthenticationType
         {
-            get
-            {
-                return _fakeIdentity.AuthenticationType;
-            }
+            get { return _fakeIdentity.AuthenticationType; }
         }
     }
 }

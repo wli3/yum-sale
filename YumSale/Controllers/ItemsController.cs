@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Security.Principal;
+using System.Transactions;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using YumSale.Models;
@@ -12,7 +13,13 @@ namespace YumSale.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db;
+
+        public ItemsController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
         // GET: Items
         [Authorize]
         public ActionResult Index(IPrincipal user)

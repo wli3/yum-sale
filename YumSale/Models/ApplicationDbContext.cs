@@ -11,11 +11,6 @@ namespace YumSale.Models
         {
         }
 
-        public ApplicationDbContext(DbConnection connection)
-            : base(connection, true)
-        {
-        }
-
         public DbSet<ItemIndexViewModel> ItemIndexViewModels { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Buyer> Buyers { get; set; }
