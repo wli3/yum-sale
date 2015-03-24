@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace YumSale.Models
 {
@@ -28,6 +30,22 @@ namespace YumSale.Models
 
     public class ItemIndexViewModel
     {
+        public ItemIndexViewModel(Item item)
+        {
+            var endTime = item.CreateDateTime.AddDays(item.HoldLongDay).Add(item.HoldLongLessThanDay);
+            HolderName = (item.Buyer != null) ? item.Buyer.Name : null;
+            EndTime = endTime;
+            Name = item.Name;
+            ItemId = item.ItemId;
+        }
+
+        public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
+        {
+            var itemIndexViewModels = (from item in items
+                                       select new ItemIndexViewModel(item)
+                                       ).ToList();
+            return itemIndexViewModels;
+        }
         [Key]
         public int ItemId { get; set; }
 

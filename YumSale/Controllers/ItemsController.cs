@@ -26,22 +26,8 @@ namespace YumSale.Controllers
         {
             var currentUserId = user.Identity.GetUserId();
             var items =_repository.FindItemsByUserId(currentUserId);
-            var itemIndexViewModels = MapItemsForIndexView(items);
+            var itemIndexViewModels = ItemIndexViewModel.MapItemsForIndexView(items);
             return View(itemIndexViewModels);
-        }
-
-        private static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
-        {
-            var itemIndexViewModels = (from item in items
-                let endTime = item.CreateDateTime.AddDays(item.HoldLongDay)
-                    .Add(item.HoldLongLessThanDay)
-                select new ItemIndexViewModel
-                {
-                    HolderName = (item.Buyer != null) ? item.Buyer.Name : null,
-                    EndTime = endTime,
-                    Name = item.Name
-                }).ToList();
-            return itemIndexViewModels;
         }
 
         // GET: Items/Details/5
