@@ -15,7 +15,7 @@ namespace YumSale
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders[typeof(IPrincipal)] = new PrincipalModelBinder();
+            ModelBinders.Binders[typeof (IPrincipal)] = new PrincipalModelBinder();
         }
     }
 }

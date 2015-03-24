@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.ItemId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descrption, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Descrption, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Descrption, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Descrption, "", new {@class = "text-danger"})
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.ImageUrl, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ImageUrl, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.ImageUrl, "", new {@class = "text-danger"})
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BuyerId, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.BuyerId, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BuyerId, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.BuyerId, "", new {@class = "text-danger"})
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreateDateTime, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.CreateDateTime, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CreateDateTime, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.CreateDateTime, "", new {@class = "text-danger"})
@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoldTime, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.HoldTime, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HoldTime, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.HoldTime, "", new {@class = "text-danger"})
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoldLongLessThanDay, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.HoldLongLessThanDay, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HoldLongLessThanDay, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.HoldLongLessThanDay, "", new {@class = "text-danger"})

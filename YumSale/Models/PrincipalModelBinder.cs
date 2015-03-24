@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace YumSale.Models
@@ -20,7 +15,7 @@ namespace YumSale.Models
             {
                 throw new ArgumentNullException("bindingContext");
             }
-            IPrincipal p = controllerContext.HttpContext.User;
+            var p = controllerContext.HttpContext.User;
             return p;
         }
     }

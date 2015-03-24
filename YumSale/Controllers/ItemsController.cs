@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Security.Principal;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using YumSale.Models;
 
@@ -85,7 +82,8 @@ namespace YumSale.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Create(
-            [Bind(Include = "ItemId,Name,Descrption,HoldLongDay,HoldLongHour,ImageUrl")] ItemCreateViewModel itemCreateViewModel)
+            [Bind(Include = "ItemId,Name,Descrption,HoldLongDay,HoldLongHour,ImageUrl")] ItemCreateViewModel
+                itemCreateViewModel)
         {
             var item = new Item();
             if (ModelState.IsValid)
@@ -134,7 +132,8 @@ namespace YumSale.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Edit(
-            [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLongLessThanDay")] Item item)
+            [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLongLessThanDay")] Item
+                item)
         {
             if (ModelState.IsValid)
             {

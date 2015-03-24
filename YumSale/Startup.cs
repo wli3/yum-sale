@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 using YumSale;
 
@@ -12,8 +11,7 @@ namespace YumSale
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-           // Database.SetInitializer(new DebugInitializer());
-
+            // Database.SetInitializer(new DebugInitializer());
         }
     }
 }

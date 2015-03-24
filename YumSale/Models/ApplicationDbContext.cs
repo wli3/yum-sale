@@ -16,6 +16,7 @@ namespace YumSale.Models
         {
         }
 
+        public DbSet<ItemIndexViewModel> ItemIndexViewModels { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Buyer> Buyers { get; set; }
 
@@ -23,7 +24,5 @@ namespace YumSale.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<YumSale.Models.ItemIndexViewModel> ItemIndexViewModels { get; set; }
     }
 }
