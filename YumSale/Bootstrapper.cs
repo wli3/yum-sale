@@ -1,6 +1,10 @@
+using System.Data.Entity;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
 using Unity.Mvc3;
+using YumSale.Controllers;
 using YumSale.Models;
 
 namespace YumSale
@@ -23,7 +27,9 @@ namespace YumSale
             
             // e.g. container.RegisterType<ITestService, TestService>();            
             container.RegisterType<IRepository, Repository>();
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
             return container;
         }
     }
-}
+}   

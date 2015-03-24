@@ -209,7 +209,6 @@
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Repository.cs" />
-    <Compile Include="Models\IApplicationDbContext.cs" />
     <Compile Include="Models\PrincipalModelBinder.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
