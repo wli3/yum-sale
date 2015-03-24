@@ -16,6 +16,7 @@ namespace YumSale
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders[typeof (IPrincipal)] = new PrincipalModelBinder();
+            Bootstrapper.Initialise();
         }
     }
 }

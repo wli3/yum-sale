@@ -13,14 +13,19 @@ namespace YumSale.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly IRepository _repository;
+
+        public ItemsController(IRepository repository)
+        {
+            _repository = repository;
+        }
 
         // GET: Items
         [Authorize]
         public ActionResult Index(IPrincipal user)
         {
             var currentUserId = user.Identity.GetUserId();
-            var items = _db.Users.Find(currentUserId).Items.ToList();
+            var items =_repository.FindItemsByUserId(currentUserId);
             var itemIndexViewModels = MapItemsForIndexView(items);
             return View(itemIndexViewModels);
         }
@@ -48,23 +53,12 @@ namespace YumSale.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // TODO should be a way just each in _db
-            var item = FindItemInCurrentUser(id);
+            var item = _repository.FindItemInCurrentUser(id, User.Identity.GetUserId());
             if (item == null)
             {
                 return HttpNotFound();
             }
             return View(item);
-        }
-
-        private Item FindItemInCurrentUser(int? id)
-        {
-            var items = _db.Users.Find(User.Identity.GetUserId()).Items;
-            var item = _db.Items.Find(id);
-            if (!items.Contains(item))
-            {
-                item = null;
-            }
-            return item;
         }
 
         // TODO anonymous create
@@ -73,7 +67,7 @@ namespace YumSale.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name");
+            ViewBag.ItemId = _repository.GetItemIdAndNameSelectList();
             return View();
         }
 
@@ -99,14 +93,11 @@ namespace YumSale.Controllers
                 item.ImageUrl = itemCreateViewModel.ImageUrl;
 
                 //var item = new Item { CreateDateTime = DateTime.Now };
-                _db.Items.Add(item);
-                var user = _db.Users.Find(User.Identity.GetUserId());
-                user.Items.Add(item);
-                _db.SaveChanges();
+                _repository.AddItemToUser(item, User.Identity.GetUserId());
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name", item.ItemId);
+            ViewBag.ItemId = _repository.GetItemIdAndNameSelectListWithItemId(item.ItemId);
             return View(item);
         }
 
@@ -118,12 +109,12 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var item = _db.Items.Find(id);
+            var item = _repository.FindItemById(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name", item.ItemId);
+            ViewBag.ItemId = _repository.GetItemIdAndNameSelectListWithItemId(item.ItemId);
             return View(item);
         }
 
@@ -139,11 +130,10 @@ namespace YumSale.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(item).State = EntityState.Modified;
-                _db.SaveChanges();
+                _repository.MarkModified(item);
                 return RedirectToAction("Index");
             }
-            ViewBag.ItemId = new SelectList(_db.Buyers, "ItemId", "Name", item.ItemId);
+            ViewBag.ItemId = _repository.GetItemIdAndNameSelectListWithItemId(item.ItemId);
             return View(item);
         }
 
@@ -154,7 +144,7 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var item = _db.Items.Find(id);
+            var item = _repository.FindItemById(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -168,9 +158,7 @@ namespace YumSale.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            var item = _db.Items.Find(id);
-            _db.Items.Remove(item);
-            _db.SaveChanges();
+            _repository.RemoveById(id);
             return RedirectToAction("Index");
         }
 
@@ -178,7 +166,7 @@ namespace YumSale.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                _repository.Dispose();
             }
             base.Dispose(disposing);
         }
