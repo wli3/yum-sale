@@ -98,6 +98,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\ItemsControllerTests.cs" />
+    <Compile Include="Models\ItemIndexViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +112,7 @@
       <Name>YumSale</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
