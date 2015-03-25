@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Security.Principal;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
