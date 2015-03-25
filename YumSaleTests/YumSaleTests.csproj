@@ -99,6 +99,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\ItemsControllerTests.cs" />
+    <Compile Include="Models\ItemCreateViewModelTests.cs" />
     <Compile Include="Models\ItemIndexViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

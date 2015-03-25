@@ -26,6 +26,21 @@ namespace YumSale.Models
         [Display(Name = "Sale Last: hours")]
         [Range(0, 23)]
         public int HoldLongHour { get; set; }
+
+        public Item ToItem()
+        {
+            var item = new Item
+            {
+                HoldLongLessThanDay = new TimeSpan(0, HoldLongHour, 0, 0),
+                HoldLongDay = HoldLongDay,
+                CreateDateTime = DateTime.Now,
+                Descrption = Descrption,
+                ItemId = ItemId,
+                Name = Name,
+                ImageUrl = ImageUrl
+            };
+            return item;
+        }
     }
 
     public class ItemIndexViewModel

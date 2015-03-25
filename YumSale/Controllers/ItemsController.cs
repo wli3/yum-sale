@@ -34,7 +34,6 @@ namespace YumSale.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // TODO should be a way just each in _db
             var item = _repository.FindItemInCurrentUser(id, User.Identity.GetUserId());
             if (item == null)
             {
@@ -66,19 +65,10 @@ namespace YumSale.Controllers
             var item = new Item();
             if (ModelState.IsValid)
             {
-                item.HoldLongLessThanDay = new TimeSpan(0, itemCreateViewModel.HoldLongHour, 0, 0);
-                item.HoldLongDay = itemCreateViewModel.HoldLongDay;
-                item.CreateDateTime = DateTime.Now;
-                item.Descrption = itemCreateViewModel.Descrption;
-                item.ItemId = itemCreateViewModel.ItemId;
-                item.Name = itemCreateViewModel.Name;
-                item.ImageUrl = itemCreateViewModel.ImageUrl;
-
-                //var item = new Item { CreateDateTime = DateTime.Now };
+                item = itemCreateViewModel.ToItem();
                 _repository.AddItemToUser(item, User.Identity.GetUserId());
                 return RedirectToAction("Index");
             }
-
             ViewBag.ItemId = _repository.GetItemIdAndNameSelectListWithItemId(item.ItemId);
             return View(item);
         }
