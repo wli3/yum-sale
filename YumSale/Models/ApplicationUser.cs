@@ -10,6 +10,7 @@ namespace YumSale.Models
     //class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        // TODO seller's custom information
         public virtual ICollection<Item> Items { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

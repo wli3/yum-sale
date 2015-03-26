@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.EnterpriseServices;
 
 namespace YumSale.Models
 {
@@ -26,5 +27,7 @@ namespace YumSale.Models
         public TimeSpan HoldLongLessThanDay { get; set; }
 
         public int HoldLongDay { get; set; }
+
+        // TODO  remvoe expired holder
     }
 }

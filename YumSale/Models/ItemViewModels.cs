@@ -19,11 +19,11 @@ namespace YumSale.Models
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-        [Display(Name = "Sale Last: days")]
+        [Display(Name = "Maximum hold long: days")]
         [Range(0, 90)]
         public int HoldLongDay { get; set; }
 
-        [Display(Name = "Sale Last: hours")]
+        [Display(Name = "Maximum hold long: hours")]
         [Range(0, 23)]
         public int HoldLongHour { get; set; }
 
