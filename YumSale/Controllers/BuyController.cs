@@ -9,6 +9,12 @@ namespace YumSale.Controllers
 {
     public class BuyController : Controller
     {
+        private readonly IRepository _repository;
+
+        public BuyController(IRepository repository)
+        {
+            _repository = repository;
+        }
         // GET: Buy
         public ActionResult Index(string id)
         {
@@ -16,6 +22,8 @@ namespace YumSale.Controllers
             {
                 return HttpNotFound();
             }
+            //var items = _repository.FindItemsByUserId(id);
+            //var itemView = new BuyHoldViewModel(item);
             ViewBag.a = id;
             return View();
         }

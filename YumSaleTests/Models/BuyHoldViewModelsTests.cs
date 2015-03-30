@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace YumSale.Models.Tests
@@ -85,5 +86,31 @@ namespace YumSale.Models.Tests
             Assert.Equal("Rosalind Lutece", resultBuyer.Name);
             Assert.Equal("Bring us the girl, and wipe away the debt", resultBuyer.Token);
         }
+
+        [Fact]
+        public void BuyHoldViewModelShouldConvertACollectionOfItems()
+        {
+            // Arrange
+            var itemToMap = new Item
+            {
+                Buyer = null,
+                BuyerId = null,
+                CreateDateTime = new DateTime(2012, 12, 12, 1, 0, 0),
+                Descrption = "good one",
+                HoldLongDay = 3,
+                HoldLongLessThanDay = new TimeSpan(0, 1, 0, 0),
+                ImageUrl = "http://www.123.com",
+                HoldTime = null,
+                ItemId = 3,
+                Name = "coffee machine"
+            };
+            var items = new List<Item> {itemToMap, itemToMap, itemToMap};
+
+            // Act
+            var viewModels = BuyHoldViewModel.MapItemsForIndexView(items);
+            Assert.Equal(3, viewModels.Count);
+            Assert.Equal("coffee machine", viewModels[0].Name);
+        }
+
     }
 }
