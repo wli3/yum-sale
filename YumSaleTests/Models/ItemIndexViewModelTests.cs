@@ -34,7 +34,7 @@ namespace YumSale.Models.Tests
 
             // Assert
             Assert.Equal(new TimeSpan(3,1,0,0), viewModel.HoldLong);
-            Assert.Equal("Anna", viewModel.HolderName);
+            Assert.Equal("Anna", viewModel.BuyerName);
             Assert.Equal(3, viewModel.ItemId);
             Assert.Equal("coffee machine", viewModel.Name);
         }
@@ -62,7 +62,7 @@ namespace YumSale.Models.Tests
 
             // Assert
             Assert.Equal(new TimeSpan(3, 1, 0, 0), viewModel.HoldLong);
-            Assert.Equal(null, viewModel.HolderName);
+            Assert.Equal(null, viewModel.BuyerName);
             Assert.Equal(3, viewModel.ItemId);
             Assert.Equal("coffee machine", viewModel.Name);
         }

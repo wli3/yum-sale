@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.HoldLong)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HolderName)
+            @Html.DisplayNameFor(model => model.BuyerName)
         </th>
         <th></th>
     </tr>
@@ -33,7 +33,7 @@
                 @Html.DisplayFor(modelItem => item.HoldLong)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HolderName)
+                @Html.DisplayFor(modelItem => item.BuyerName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id = item.ItemId}) |

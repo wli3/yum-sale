@@ -47,7 +47,7 @@ namespace YumSale.Models
     {
         public ItemIndexViewModel(Item item)
         {
-            HolderName = (item.Buyer != null) ? item.Buyer.Name : null;
+            BuyerName = (item.Buyer != null) ? item.Buyer.Name : null;
             HoldLong = item.HoldLongLessThanDay.Add(new TimeSpan(item.HoldLongDay, 0, 0, 0));
             Name = item.Name;
             ItemId = item.ItemId;
@@ -62,8 +62,8 @@ namespace YumSale.Models
         [Display(Name = "Maximum time a buyer can hold")]
         public TimeSpan HoldLong { get; set; }
 
-        [Display(Name = "Holder Name")]
-        public string HolderName { get; set; }
+        [Display(Name = "Buyer Name")]
+        public string BuyerName { get; set; }
 
         public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
         {

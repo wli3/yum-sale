@@ -31,6 +31,6 @@ namespace YumSale.Models
 
         
 
-        // TODO  remvoe expired holder
+        // TODO  remvoe expired buyer
     }
 }
