@@ -14,7 +14,7 @@
         <p>
         @if (Request.IsAuthenticated)
         {
-            @Html.ActionLink("View Items", "Index", "items", new {@class = "btn btn-primary btn-lg"})
+           @Html.ActionLink("View Items", "Index", "items") 
         }
         else
         {
