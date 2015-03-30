@@ -66,6 +66,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.HoldLongDay, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoldLongDay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoldLongDay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.HoldLongLessThanDay, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HoldLongLessThanDay, new {htmlAttributes = new {@class = "form-control"}})

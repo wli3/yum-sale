@@ -33,7 +33,7 @@ namespace YumSale.Models.Tests
             var viewModel = new ItemIndexViewModel(itemToMap);
 
             // Assert
-            Assert.Equal(new DateTime(2012, 12, 15, 2, 0, 0), viewModel.EndTime);
+            Assert.Equal(new TimeSpan(3,1,0,0), viewModel.HoldLong);
             Assert.Equal("Anna", viewModel.HolderName);
             Assert.Equal(3, viewModel.ItemId);
             Assert.Equal("coffee machine", viewModel.Name);
@@ -61,7 +61,7 @@ namespace YumSale.Models.Tests
             var viewModel = new ItemIndexViewModel(itemToMap);
 
             // Assert
-            Assert.Equal(new DateTime(2012, 12, 15, 2, 0, 0), viewModel.EndTime);
+            Assert.Equal(new TimeSpan(3, 1, 0, 0), viewModel.HoldLong);
             Assert.Equal(null, viewModel.HolderName);
             Assert.Equal(3, viewModel.ItemId);
             Assert.Equal("coffee machine", viewModel.Name);

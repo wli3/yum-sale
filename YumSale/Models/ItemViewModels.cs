@@ -19,11 +19,11 @@ namespace YumSale.Models
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-        [Display(Name = "Maximum hold long: days")]
+        [Display(Name = "Maximum time a buyer can hold: days")]
         [Range(0, 90)]
         public int HoldLongDay { get; set; }
 
-        [Display(Name = "Maximum hold long: hours")]
+        [Display(Name = "Maximum time a buyer can hold: hours")]
         [Range(0, 23)]
         public int HoldLongHour { get; set; }
 
@@ -47,9 +47,8 @@ namespace YumSale.Models
     {
         public ItemIndexViewModel(Item item)
         {
-            var endTime = item.CreateDateTime.AddDays(item.HoldLongDay).Add(item.HoldLongLessThanDay);
             HolderName = (item.Buyer != null) ? item.Buyer.Name : null;
-            EndTime = endTime;
+            HoldLong = item.HoldLongLessThanDay.Add(new TimeSpan(item.HoldLongDay, 0, 0, 0));
             Name = item.Name;
             ItemId = item.ItemId;
         }
@@ -60,7 +59,8 @@ namespace YumSale.Models
         [Required]
         public string Name { get; set; }
 
-        public DateTime EndTime { get; set; }
+        [Display(Name = "Maximum time a buyer can hold")]
+        public TimeSpan HoldLong { get; set; }
 
         [Display(Name = "Holder Name")]
         public string HolderName { get; set; }

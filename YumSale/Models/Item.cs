@@ -21,12 +21,15 @@ namespace YumSale.Models
         public int? BuyerId { get; set; }
         public virtual Buyer Buyer { get; set; }
         public DateTime CreateDateTime { get; set; }
+        [Display(Name = "Time when buyer hold")]
         public DateTime? HoldTime { get; set; }
 
-        [Display(Name = "Sale Last")]
+        [Display(Name = "Maximum time a buyer can hold: days")]
+        public int HoldLongDay { get; set; }
+        [Display(Name = "Maximum time a buyer can hold: hours")]
         public TimeSpan HoldLongLessThanDay { get; set; }
 
-        public int HoldLongDay { get; set; }
+        
 
         // TODO  remvoe expired holder
     }
