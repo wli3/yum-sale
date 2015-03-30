@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.AccessControl;
@@ -36,6 +37,9 @@ namespace YumSale.Models
         [Editable(false)]
         public int HoldLongDay { get; set; }
 
+        [ForeignKey("Buyer")]
+        public string BuyerId { get; set; }
+
         [Required]
         [Display(Name = "Your name")]
         public string BuyerName { get; set; }
@@ -60,5 +64,14 @@ namespace YumSale.Models
 
         }
 
+        public BuyHoldViewModel()
+        {
+         
+        }
+
+        public Buyer ToBuyer()
+        {
+            return null;
+        }
     }
 }

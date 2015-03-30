@@ -68,28 +68,22 @@ namespace YumSale.Models.Tests
         [Fact]
         public void BuyHoldViewModelShouldCreateBuyerOutOfIt()
         {
-            // TODO    
-        }
-
-        [Fact]
-        public void BuyHoldViewModelShouldUpdateItemWhenHold()
-        {
-            // Arrange
-            var itemToUpdate = new Item
+            var buyHoldViewModel = new BuyHoldViewModel
             {
-                Buyer = null,
-                BuyerId = null,
-                CreateDateTime = new DateTime(2012, 12, 12, 1, 0, 0),
+                BuyerName = "Rosalind Lutece",
+                Contact = "123-123-3212",
+                Token = "Bring us the girl, and wipe away the debt",
                 Descrption = "good one",
                 HoldLongDay = 3,
                 HoldLongLessThanDay = new TimeSpan(0, 1, 0, 0),
                 ImageUrl = "http://www.123.com",
-                HoldTime = null,
                 ItemId = 3,
                 Name = "coffee machine"
             };
-
-            //TODO
+            var resultBuyer = buyHoldViewModel.ToBuyer();
+            Assert.Equal("123-123-3212",resultBuyer.Contact);
+            Assert.Equal("Rosalind Lutece", resultBuyer.Name);
+            Assert.Equal("Bring us the girl, and wipe away the debt", resultBuyer.Token);
         }
     }
 }
