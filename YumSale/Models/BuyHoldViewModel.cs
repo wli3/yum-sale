@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace YumSale.Models
 {
@@ -73,6 +75,14 @@ namespace YumSale.Models
                 Contact = Contact,
                 Token = Token
             };
+        }
+
+        public static List<BuyHoldViewModel> MapItemsForIndexView(List<Item> items)
+        {
+            var buyHoldViewModels = (from item in items
+                                       select new BuyHoldViewModel(item)
+                ).ToList();
+            return buyHoldViewModels;
         }
     }
 }
