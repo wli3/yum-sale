@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Web;
 
 namespace YumSale.Models
 {
@@ -59,19 +54,25 @@ namespace YumSale.Models
             {
                 throw new SystemException("Buyer is not null");
             }
-            Debug.Assert(item.Buyer == null);
-            
-
+            Descrption = item.Descrption;
+            HoldLongDay = item.HoldLongDay;
+            HoldLongLessThanDay = item.HoldLongLessThanDay;
+            HoldTime = item.HoldTime;
+            ImageUrl = item.ImageUrl;
+            ItemId = item.ItemId;
+            Name = item.Name;
         }
 
-        public BuyHoldViewModel()
-        {
-         
-        }
+        public BuyHoldViewModel() {}
 
         public Buyer ToBuyer()
         {
-            return null;
+            return new Buyer
+            {
+                Name = BuyerName,
+                Contact = Contact,
+                Token = Token
+            };
         }
     }
 }

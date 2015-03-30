@@ -81,7 +81,7 @@ namespace YumSale.Models.Tests
                 Name = "coffee machine"
             };
             var resultBuyer = buyHoldViewModel.ToBuyer();
-            Assert.Equal("123-123-3212",resultBuyer.Contact);
+            Assert.Equal("123-123-3212", resultBuyer.Contact);
             Assert.Equal("Rosalind Lutece", resultBuyer.Name);
             Assert.Equal("Bring us the girl, and wipe away the debt", resultBuyer.Token);
         }
