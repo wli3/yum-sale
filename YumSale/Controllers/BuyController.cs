@@ -22,10 +22,10 @@ namespace YumSale.Controllers
             {
                 return HttpNotFound();
             }
-            //var items = _repository.FindItemsByUserId(id);
-            //var itemView = new BuyHoldViewModel(item);
+            var items = _repository.FindItemsByUserId(id);
+            var buyHoldViewModels = BuyHoldViewModel.MapItemsForIndexView(items);
             ViewBag.a = id;
-            return View();
+            return View(buyHoldViewModels);
         }
     }
 }

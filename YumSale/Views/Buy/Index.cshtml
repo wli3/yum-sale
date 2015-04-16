@@ -1,7 +1,51 @@
-﻿
+﻿@model List<YumSale.Models.BuyHoldViewModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-The user name is @ViewBag.a
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in Model)
+        {
+            <p>
+                <dt>
+                    @Html.DisplayNameFor(modelItem => item.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(modelItem => item.Descrption)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Descrption)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(modelItem => item.ImageUrl)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                </dd>
+
+                <dt>
+                    Maximum Time Before You Pick Up
+                </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.HoldLongDay) days @Html.DisplayFor(modelItem => item.HoldLongLessThanDay.Hours) hours
+                </dd>
+            </p>
+        }
+    </dl>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
