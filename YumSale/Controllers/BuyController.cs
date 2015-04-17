@@ -15,7 +15,7 @@ namespace YumSale.Controllers
         {
             _repository = repository;
         }
-        // GET: Buy
+        // GET: Buy/Index/e3d42666-b875-41f6-8bf7-213d18e923fc
         public ActionResult Index(string id)
         {
             if (id == null)
