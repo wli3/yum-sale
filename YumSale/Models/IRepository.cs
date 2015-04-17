@@ -15,5 +15,6 @@ namespace YumSale.Models
         void MarkModified(Item item);
         void RemoveById(int? id);
         void Dispose();
+        void AddBuyerToItem(Buyer buyer, Item item);
     }
 }

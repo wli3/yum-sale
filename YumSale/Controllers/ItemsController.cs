@@ -22,6 +22,10 @@ namespace YumSale.Controllers
             var currentUserId = user.Identity.GetUserId();
             var items = _repository.FindItemsByUserId(currentUserId);
             var itemIndexViewModels = ItemIndexViewModel.MapItemsForIndexView(items);
+
+            string saleLink = Helper.GetSaleBaseLink();
+            saleLink = saleLink + "/buy/index/" + currentUserId;
+            ViewBag.SaleLink = saleLink;
             return View(itemIndexViewModels);
         }
 
