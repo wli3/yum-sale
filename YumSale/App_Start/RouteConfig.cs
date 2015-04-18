@@ -12,6 +12,8 @@ namespace YumSale
             routes.MapRoute("Default", "{controller}/{action}/{id}",
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional}
                 );
+            routes.MapRoute("DetailWithUserId", "{controller}/{action}/{userId}/{itemId}"
+                );
         }
     }
 }

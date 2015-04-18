@@ -67,6 +67,15 @@ namespace YumSale.Models
             _db.Dispose();
         }
 
+        public void AddBuyerToItem(Buyer buyer, Item item)
+        {
+            _db.Buyers.Add(buyer);
+            item.Buyer = buyer;
+            item.BuyerId = buyer.BuyerId;
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+        }
+
         public void SaveChanges()
         {
             _db.SaveChanges();
