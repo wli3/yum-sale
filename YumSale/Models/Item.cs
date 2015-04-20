@@ -30,5 +30,17 @@ namespace YumSale.Models
 
         [Display(Name = "Maximum time a buyer can hold: hours")]
         public TimeSpan HoldLongLessThanDay { get; set; }
+
+        public void CleanBuyer()
+        {
+            Buyer = null;
+            BuyerId = null;
+            HoldTime = null;
+        }
+
+        public bool HasBuyer()
+        {
+            return Buyer != null;
+        }
     }
 }

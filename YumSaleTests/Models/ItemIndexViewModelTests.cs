@@ -37,6 +37,7 @@ namespace YumSale.Models.Tests
             Assert.Equal("Anna", viewModel.BuyerName);
             Assert.Equal(3, viewModel.ItemId);
             Assert.Equal("coffee machine", viewModel.Name);
+            Assert.Equal(true, viewModel.HasBuyer);
         }
 
         [Fact]
@@ -65,6 +66,7 @@ namespace YumSale.Models.Tests
             Assert.Equal(null, viewModel.BuyerName);
             Assert.Equal(3, viewModel.ItemId);
             Assert.Equal("coffee machine", viewModel.Name);
+            Assert.Equal(false, viewModel.HasBuyer );
         }
     }
 }

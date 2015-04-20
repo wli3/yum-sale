@@ -101,6 +101,7 @@
     <Compile Include="Models\BuyHoldViewModelsTests.cs" />
     <Compile Include="Models\ItemCreateViewModelTests.cs" />
     <Compile Include="Models\ItemIndexViewModelTests.cs" />
+    <Compile Include="Models\ItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

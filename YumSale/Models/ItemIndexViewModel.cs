@@ -13,6 +13,7 @@ namespace YumSale.Models
             HoldLong = item.HoldLongLessThanDay.Add(new TimeSpan(item.HoldLongDay, 0, 0, 0));
             Name = item.Name;
             ItemId = item.ItemId;
+            HasBuyer = item.HasBuyer();
         }
 
         [Key]
@@ -26,6 +27,8 @@ namespace YumSale.Models
 
         [Display(Name = "Buyer Name")]
         public string BuyerName { get; set; }
+
+        public bool HasBuyer { get; set; }
 
         public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
         {

@@ -2,6 +2,7 @@
 using System.Security.Principal;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using MvcFlashMessages;
 using YumSale.Models;
 
 namespace YumSale.Controllers
@@ -44,8 +45,6 @@ namespace YumSale.Controllers
             }
             return View(item);
         }
-
-        // TODO anonymous create
 
         // GET: Items/Create
         [Authorize]
@@ -112,6 +111,36 @@ namespace YumSale.Controllers
             }
             ViewBag.ItemId = _repository.GetItemIdAndNameSelectListWithItemId(item.ItemId);
             return View(item);
+        }
+
+        // GET: Items/Repost/5
+        public ActionResult Repost(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var buyer = _repository.FindItemsBuyer(id);
+            if (buyer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(buyer);
+        }
+
+        // POST: Items/Repost/5
+        [HttpPost, ActionName("Repost")]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult RepostConfirmed(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            _repository.RepostItemForUser(id, User.Identity.GetUserId());
+            this.Flash("success", "Repost item"); 
+            return RedirectToAction("Index");
         }
 
         // GET: Items/Delete/5

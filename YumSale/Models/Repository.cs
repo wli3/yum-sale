@@ -58,6 +58,9 @@ namespace YumSale.Models
         public void RemoveById(int? id)
         {
             var item = _db.Items.Find(id);
+             var buyerToDelete = item.Buyer;
+                _db.Buyers.Remove(buyerToDelete);
+               
             _db.Items.Remove(item);
             _db.SaveChanges();
         }
@@ -74,6 +77,30 @@ namespace YumSale.Models
             item.BuyerId = buyer.BuyerId;
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
+        }
+
+        public void RepostItemForUser(int? itemId, string getUserId)
+        {
+            if (itemId != null)
+            {
+                var item = FindItemById(itemId);
+                var buyerToDelete = item.Buyer;
+                _db.Buyers.Remove(buyerToDelete);
+                item.CleanBuyer();
+                _db.Entry(item).State = EntityState.Modified;
+                _db.SaveChanges();
+            }
+
+        }
+
+        public Buyer FindItemsBuyer(int? id)
+        {
+            if (id != null)
+            {
+                var item = FindItemById(id);
+                return item.Buyer;
+            }
+            return null;
         }
 
         public void SaveChanges()
