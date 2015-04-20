@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using YumSale.Models;
 
 namespace YumSale.Controllers
@@ -46,20 +47,17 @@ namespace YumSale.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(
-            string id, List<BuyHoldViewModel> buyHoldViewModels)
+        public ActionResult Details(string userId, int? itemId,
+        [Bind(Include = "BuyerName,Contact,Token")] BuyHoldViewModel buyHoldViewModel)
         {
-            foreach (var buyHoldViewModel in buyHoldViewModels)
+            if (ModelState.IsValid)
             {
-                if (buyHoldViewModel.BuyerName != null)
-                {
-                    var buyer = buyHoldViewModel.ToBuyer();
-                    var item = _repository.FindItemById(buyHoldViewModel.ItemId);
-                    _repository.AddBuyerToItem(buyer, item);
-
-                }
+                var buyer = buyHoldViewModel.ToBuyer();
+                var item = _repository.FindItemById(itemId);
+                _repository.AddBuyerToItem(buyer, item);
             }
-            return View(buyHoldViewModels);
+            return RedirectToAction("Index", new RouteValueDictionary(
+     new { controller = "Buy", action = "Index", Id = userId }));
         }
     }
 }

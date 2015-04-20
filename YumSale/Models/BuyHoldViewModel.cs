@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Web.DynamicData;
 
 namespace YumSale.Models
 {
@@ -12,7 +13,6 @@ namespace YumSale.Models
         [Editable(false)]
         public int ItemId { get; set; }
 
-        [Required]
         [Editable(false)]
         public string Name { get; set; }
 
@@ -33,9 +33,6 @@ namespace YumSale.Models
         [Display(Name = "Maxium time you can hold: days")]
         [Editable(false)]
         public int HoldLongDay { get; set; }
-
-        [ForeignKey("Buyer")]
-        public string BuyerId { get; set; }
 
         [Required]
         [Display(Name = "Your name")]
@@ -80,6 +77,7 @@ namespace YumSale.Models
         public static List<BuyHoldViewModel> MapItemsForIndexView(List<Item> items)
         {
             var buyHoldViewModels = (from item in items
+                                     where item.Buyer == null
                                        select new BuyHoldViewModel(item)
                 ).ToList();
             return buyHoldViewModels;
