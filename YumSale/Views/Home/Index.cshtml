@@ -12,14 +12,14 @@
         <h2>Getting started</h2>
 
         <p>
-        @if (Request.IsAuthenticated)
-        {
-           @Html.ActionLink("View Items", "Index", "items") 
-        }
-        else
-        {
-            <text><strong>UNDER CONSTRUCTION</strong> Click Register and create your account</text>
-        }
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("View Items", "Index", "items")
+            }
+            else
+            {
+                <text><strong>UNDER CONSTRUCTION</strong> Click Register and create your account</text>
+            }
         </p>
     </div>
 </div>
