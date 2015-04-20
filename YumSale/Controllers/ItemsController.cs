@@ -23,7 +23,7 @@ namespace YumSale.Controllers
             var items = _repository.FindItemsByUserId(currentUserId);
             var itemIndexViewModels = ItemIndexViewModel.MapItemsForIndexView(items);
 
-            string saleLink = Helper.GetSaleBaseLink();
+            var saleLink = Helper.GetSaleBaseLink();
             saleLink = saleLink + "/buy/index/" + currentUserId;
             ViewBag.SaleLink = saleLink;
             return View(itemIndexViewModels);
@@ -100,7 +100,9 @@ namespace YumSale.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Edit(
-            [Bind(Include = "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLongDay,HoldLongLessThanDay")] Item
+            [Bind(
+                Include =
+                    "ItemId,Name,Descrption,ImageUrl,BuyerId,CreateDateTime,HoldTime,HoldLongDay,HoldLongLessThanDay")] Item
                 item)
         {
             if (ModelState.IsValid)

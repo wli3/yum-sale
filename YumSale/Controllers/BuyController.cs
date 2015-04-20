@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
 using System.Web.Routing;
 using MvcFlashMessages;
@@ -18,6 +14,7 @@ namespace YumSale.Controllers
         {
             _repository = repository;
         }
+
         // GET: Buy/Index/e3d42666-b875-41f6-8bf7-213d18e923fc
         public ActionResult Index(string id)
         {
@@ -45,11 +42,10 @@ namespace YumSale.Controllers
             return View(new BuyHoldViewModel(item));
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Details(string userId, int? itemId,
-        [Bind(Include = "BuyerName,Contact,Token")] BuyHoldViewModel buyHoldViewModel)
+            [Bind(Include = "BuyerName,Contact,Token")] BuyHoldViewModel buyHoldViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +55,7 @@ namespace YumSale.Controllers
             }
             this.Flash("success", "Your request is sent. The seller may contact you later.");
             return RedirectToAction("Index", new RouteValueDictionary(
-     new { controller = "Buy", action = "Index", Id = userId }));
+                new {controller = "Buy", action = "Index", Id = userId}));
         }
     }
 }

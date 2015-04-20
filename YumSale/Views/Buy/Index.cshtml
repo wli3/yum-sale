@@ -11,7 +11,7 @@
 
 <div>
     <h4>Item</h4>
-    <hr />
+    <hr/>
     @foreach (var item in Model)
     {
         using (Html.BeginForm())
@@ -22,21 +22,19 @@
 
                 <dd>
                     @{
-            try
+                        try
 
-            {
-                if (item.ImageUrl != null)
-                {
-                    WebRequest webRequest = WebRequest.Create(item.ImageUrl);
-                    var webResponse = webRequest.GetResponse();
-                    <img src=@item.ImageUrl alt="Item Image" width="300" />
-                }
-
-            }
-            catch (WebException ex)
-            {
-
-            }
+                        {
+                            if (item.ImageUrl != null)
+                            {
+                                var webRequest = WebRequest.Create(item.ImageUrl);
+                                var webResponse = webRequest.GetResponse();
+                                <img src=@item.ImageUrl alt="Item Image" width="300"/>
+                            }
+                        }
+                        catch (WebException ex)
+                        {
+                        }
                     }
                 </dd>
 
@@ -45,7 +43,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Name)
                 <dt>
 
                     @Html.DisplayNameFor(modelItem => item.Descrption)
@@ -61,10 +59,10 @@
                 <dd>
                     @Html.DisplayFor(modelItem => item.HoldLongDay) days @Html.DisplayFor(modelItem => item.HoldLongLessThanDay.Hours) hours
                 </dd>
-           <td>
-                @Html.RouteLink("Looks good", "DetailWithUserId",
-                new RouteValueDictionary(new {controller = "Buy", action = "Details", userId = ViewBag.userId, itemId = item.ItemId }))
-            </td>
+                <td>
+                    @Html.RouteLink("Looks good", "DetailWithUserId",
+                        new RouteValueDictionary(new {controller = "Buy", action = "Details", ViewBag.userId, itemId = item.ItemId}))
+                </td>
 
             </dl>
         }

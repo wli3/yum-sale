@@ -1,14 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web.DynamicData;
 
 namespace YumSale.Models
 {
     public class BuyHoldViewModel
     {
+        public BuyHoldViewModel(Item item)
+        {
+            if (item.Buyer != null || item.BuyerId != null || item.HoldTime != null)
+            {
+                throw new SystemException("Buyer is not null");
+            }
+            Descrption = item.Descrption;
+            HoldLongDay = item.HoldLongDay;
+            HoldLongLessThanDay = item.HoldLongLessThanDay;
+            HoldTime = item.HoldTime;
+            ImageUrl = item.ImageUrl;
+            ItemId = item.ItemId;
+            Name = item.Name;
+        }
+
+        public BuyHoldViewModel()
+        {
+        }
+
         [Key]
         [Editable(false)]
         public int ItemId { get; set; }
@@ -24,11 +41,9 @@ namespace YumSale.Models
         [Editable(false)]
         public string ImageUrl { get; set; }
 
-        
         [Display(Name = "Maxium time you can hold: hours")]
         [Editable(false)]
         public TimeSpan HoldLongLessThanDay { get; set; }
-
 
         [Display(Name = "Maxium time you can hold: days")]
         [Editable(false)]
@@ -47,23 +62,6 @@ namespace YumSale.Models
 
         public DateTime? HoldTime { get; set; }
 
-        public BuyHoldViewModel(Item item)
-        {
-            if (item.Buyer != null || item.BuyerId != null || item.HoldTime != null)
-            {
-                throw new SystemException("Buyer is not null");
-            }
-            Descrption = item.Descrption;
-            HoldLongDay = item.HoldLongDay;
-            HoldLongLessThanDay = item.HoldLongLessThanDay;
-            HoldTime = item.HoldTime;
-            ImageUrl = item.ImageUrl;
-            ItemId = item.ItemId;
-            Name = item.Name;
-        }
-
-        public BuyHoldViewModel() {}
-
         public Buyer ToBuyer()
         {
             return new Buyer
@@ -77,8 +75,8 @@ namespace YumSale.Models
         public static List<BuyHoldViewModel> MapItemsForIndexView(List<Item> items)
         {
             var buyHoldViewModels = (from item in items
-                                     where item.Buyer == null
-                                       select new BuyHoldViewModel(item)
+                where item.Buyer == null
+                select new BuyHoldViewModel(item)
                 ).ToList();
             return buyHoldViewModels;
         }

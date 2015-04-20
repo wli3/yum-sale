@@ -42,14 +42,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BuyerId, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BuyerId, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.BuyerId, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.CreateDateTime, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CreateDateTime, new {htmlAttributes = new {@class = "form-control"}})
@@ -66,10 +58,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoldLongDay, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HoldLongDay, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoldLongDay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HoldLongDay, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.HoldLongDay, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.HoldLongDay, "", new {@class = "text-danger"})
             </div>
         </div>
 
