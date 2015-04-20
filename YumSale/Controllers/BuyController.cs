@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using MvcFlashMessages;
 using YumSale.Models;
 
 namespace YumSale.Controllers
@@ -56,6 +57,7 @@ namespace YumSale.Controllers
                 var item = _repository.FindItemById(itemId);
                 _repository.AddBuyerToItem(buyer, item);
             }
+            this.Flash("success", "Your request is sent. The seller may contact you later.");
             return RedirectToAction("Index", new RouteValueDictionary(
      new { controller = "Buy", action = "Index", Id = userId }));
         }
