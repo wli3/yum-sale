@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 
 namespace YumSale.Models
@@ -15,6 +16,19 @@ namespace YumSale.Models
             Name = item.Name;
             ItemId = item.ItemId;
             HasBuyer = item.HasBuyer();
+            if (item.Buyer != null && item.HoldTime != null)
+            {
+                DateTime maxiumTime = (DateTime) item.HoldTime;
+                maxiumTime = maxiumTime.AddDays(item.HoldLongDay).Add(item.HoldLongLessThanDay);
+                if (maxiumTime < DateTime.Now)
+                {
+                    BuyerTimeOut = true;
+                }
+            }
+            else
+            {
+                BuyerTimeOut = false;
+            }
         }
 
         [Key]
@@ -33,6 +47,8 @@ namespace YumSale.Models
 
         public bool HasBuyer { get; set; }
 
+        public bool BuyerTimeOut { get; set; }
+ 
         public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
         {
             var itemIndexViewModels = (from item in items
