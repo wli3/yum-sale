@@ -39,7 +39,10 @@
                 @Html.DisplayFor(modelItem => item.HoldLong)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BuyerName)
+                @if (item.HasBuyer)
+                {
+                    @Html.ActionLink(item.BuyerName, "ViewBuyer", new {id = item.ItemId}) 
+                }
             </td>
             <td>
             

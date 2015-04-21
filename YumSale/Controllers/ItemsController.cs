@@ -143,6 +143,21 @@ namespace YumSale.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Items/ViewBuyer/5
+        public ActionResult ViewBuyer(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var buyer = _repository.FindItemsBuyer(id);
+            if (buyer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(buyer);
+        }
+
         // GET: Items/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -303,6 +303,7 @@
     <Content Include="Views\Buy\Index.cshtml" />
     <Content Include="Views\Buy\Details.cshtml" />
     <Content Include="Views\Items\Repost.cshtml" />
+    <Content Include="Views\Items\ViewBuyer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

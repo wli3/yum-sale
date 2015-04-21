@@ -10,6 +10,7 @@ namespace YumSale.Models
         public ItemIndexViewModel(Item item)
         {
             BuyerName = (item.Buyer != null) ? item.Buyer.Name : null;
+            BuyerId = item.BuyerId;
             HoldLong = item.HoldLongLessThanDay.Add(new TimeSpan(item.HoldLongDay, 0, 0, 0));
             Name = item.Name;
             ItemId = item.ItemId;
@@ -25,6 +26,8 @@ namespace YumSale.Models
         [Display(Name = "Maximum time a buyer can hold")]
         public TimeSpan HoldLong { get; set; }
 
+        
+        public int? BuyerId { get; set; }
         [Display(Name = "Buyer Name")]
         public string BuyerName { get; set; }
 
