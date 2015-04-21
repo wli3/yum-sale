@@ -8,6 +8,7 @@ namespace YumSale.Models
         public ApplicationDbContext()
             : base("DefaultConnection", false)
         {
+
         }
 
         public DbSet<ItemIndexViewModel> ItemIndexViewModels { get; set; }
