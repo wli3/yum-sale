@@ -21,6 +21,7 @@ namespace YumSale
             Bootstrapper.Initialise();
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
             new ApplicationDbContext().Database.Initialize(false);
+
         }
     }
 }

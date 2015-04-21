@@ -6,7 +6,7 @@ namespace YumSale.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", false)
+            : base("DefaultConnection2", false)
         {
 
         }
