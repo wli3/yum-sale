@@ -8,16 +8,8 @@
 
 <div>
     <h4>Item</h4>
-    <hr/>
+    <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Buyer.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Buyer.Name)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -35,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BuyerId)
+            @Html.DisplayNameFor(model => model.ImageUrl)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BuyerId)
+            @Html.DisplayFor(model => model.ImageUrl)
         </dd>
 
         <dt>
@@ -59,6 +51,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.HoldLongDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoldLongDay)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.HoldLongLessThanDay)
         </dt>
 
@@ -69,6 +69,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.ItemId}) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

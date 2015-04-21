@@ -296,7 +296,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Items\Delete.cshtml" />
-    <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Create.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
@@ -304,6 +303,7 @@
     <Content Include="Views\Buy\Details.cshtml" />
     <Content Include="Views\Items\Repost.cshtml" />
     <Content Include="Views\Items\ViewBuyer.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
