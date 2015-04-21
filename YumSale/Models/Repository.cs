@@ -75,6 +75,7 @@ namespace YumSale.Models
             _db.Buyers.Add(buyer);
             item.Buyer = buyer;
             item.BuyerId = buyer.BuyerId;
+            item.HoldTime = DateTime.Now;
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
         }
