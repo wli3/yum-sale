@@ -35,7 +35,7 @@ namespace YumSale.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var item = _repository.FindItemInCurrentUser(itemId, userId);
-            if (item == null)
+            if (item == null || item.HasBuyer())
             {
                 return HttpNotFound();
             }
@@ -51,11 +51,17 @@ namespace YumSale.Controllers
             {
                 var buyer = buyHoldViewModel.ToBuyer();
                 var item = _repository.FindItemById(itemId);
+                if (item.HasBuyer())
+                {
+                    this.Flash("Error", "Sorry, the item does not exist or it already has a buyer");
+                    return RedirectToAction("Index", new RouteValueDictionary(
+                        new { controller = "Buy", action = "Index", Id = userId }));
+                }
                 _repository.AddBuyerToItem(buyer, item);
             }
             this.Flash("success", "Your request is sent. The seller may contact you later.");
             return RedirectToAction("Index", new RouteValueDictionary(
-                new {controller = "Buy", action = "Index", Id = userId}));
+                new { controller = "Buy", action = "Index", Id = userId }));
         }
     }
 }

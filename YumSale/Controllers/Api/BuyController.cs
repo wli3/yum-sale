@@ -16,93 +16,56 @@ namespace YumSale.Controllers.Api
     {
         private readonly IRepository _repository = new Repository();
 
-        [ActionName("Index")]
-        public List<BuyHoldViewModel> GetIndex(string id)
+        [ActionName("Items")]
+        public List<BuyHoldViewModel> GetAllItems(string id)
         {
             var items = _repository.FindItemsByUserId(id);
             var buyHoldViewModels = BuyHoldViewModel.MapItemsForIndexView(items);
             return buyHoldViewModels;
         }
 
+        [ActionName("Items")]
+        public IHttpActionResult GetItem(string userId, int itemId)
+        {
+            if (userId == null)
+            {
+                return NotFound();
+            }
+            var item = _repository.FindItemInCurrentUser(itemId, userId);
+            if (item == null || item.HasBuyer())
+            {
+                return NotFound();
+            }
+            return Ok(new BuyHoldViewModel(item));
+        }
 
-        //// PUT: api/Items/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutItem(int id, Item item)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
 
-        //    if (id != item.ItemId)
-        //    {
-        //        return BadRequest();
-        //    }
+        [ActionName("Items")]
+        [ResponseType(typeof (void))]
+        public IHttpActionResult PostItem(string userId, int itemId, BuyHoldViewModel buyHoldViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var buyer = buyHoldViewModel.ToBuyer();
+                var item = _repository.FindItemById(itemId);
+                if (item.HasBuyer())
+                {
+                    return BadRequest();
+                }
+                _repository.AddBuyerToItem(buyer, item);
+                return Ok();
+            }
+            return BadRequest(ModelState);
+        }
 
-        //    db.Entry(item).State = EntityState.Modified;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _repository.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ItemExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        //// POST: api/Items
-        //[ResponseType(typeof(Item))]
-        //public IHttpActionResult PostItem(Item item)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Items.Add(item);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = item.ItemId }, item);
-        //}
-
-        //// DELETE: api/Items/5
-        //[ResponseType(typeof(Item))]
-        //public IHttpActionResult DeleteItem(int id)
-        //{
-        //    Item item = db.Items.Find(id);
-        //    if (item == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Items.Remove(item);
-        //    db.SaveChanges();
-
-        //    return Ok(item);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
-        //private bool ItemExists(int id)
-        //{
-        //    return db.Items.Count(e => e.ItemId == id) > 0;
-        //}
     }
 }
