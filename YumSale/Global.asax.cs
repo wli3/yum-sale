@@ -24,7 +24,7 @@ namespace YumSale
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders[typeof (IPrincipal)] = new PrincipalModelBinder();
             Bootstrapper.Initialise();
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<ApplicationDbContext>());
             new ApplicationDbContext().Database.Initialize(false);
 
         }

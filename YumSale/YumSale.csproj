@@ -218,10 +218,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504211324261_InitialCreate.cs" />
-    <Compile Include="Migrations\201504211324261_InitialCreate.Designer.cs">
-      <DependentUpon>201504211324261_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Buyer.cs" />
@@ -255,12 +251,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Properties\PublishProfiles\yum-sale.pubxml" />
     <None Include="Properties\PublishProfiles\yumsale %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\yumsale - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\yumsale - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\yumsale.pubxml" />
-    <None Include="Properties\PublishProfiles\yumsale2.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -280,7 +272,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc3.README.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -330,11 +324,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504211324261_InitialCreate.resx">
-      <DependentUpon>201504211324261_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

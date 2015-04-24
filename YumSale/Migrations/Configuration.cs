@@ -9,7 +9,7 @@ namespace YumSale.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(YumSale.Models.ApplicationDbContext context)
