@@ -16,7 +16,7 @@ namespace YumSale
         {
             AreaRegistration.RegisterAllAreas();
             // Manually installed WebAPI 2.2 after making an MVC project.
-            GlobalConfiguration.Configure(WebApiConfig.Register); // NEW way
+            GlobalConfiguration.Configure(WebApiConfig.Register); 
 
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -24,9 +24,8 @@ namespace YumSale
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders[typeof (IPrincipal)] = new PrincipalModelBinder();
             Bootstrapper.Initialise();
-            Database.SetInitializer(new DropCreateDatabaseAlways<ApplicationDbContext>());
+            Database.SetInitializer(new DbDropCreateInitializerWithSeed());
             new ApplicationDbContext().Database.Initialize(false);
-
         }
     }
 }
