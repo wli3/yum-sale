@@ -1,8 +1,9 @@
-﻿eventModule.controller("eventController", function ($scope) {
-    $scope.talks = [
-     { id: '1001', name: 'Real Time Web Applications with SignalR', speaker: 'Brij Bhushan Mishra', venue: 'Hall 1', duration: '45m' },
-     { id: '1002', name: 'Power of Node.js', speaker: 'Dhananjay Kumar', venue: 'Hall 2', duration: '45m' },
-     { id: '1003', name: 'Getting started with AngularJS', speaker: 'Brij Bhushan Mishra', venue: 'Hall 1', duration: '60m' },
-     { id: '1004', name: 'Microsoft Azure - Your cloud destination', speaker: 'Gaurav mantri', venue: 'Hall 1', duration: '45m' }
-    ];
+﻿eventModule.controller("eventController", function ($scope, $http) {
+    var baseLink = $("#baseLink").data("value");
+    var userId = $("#userId").data("value");
+    var apiLink = "http://" + baseLink + "/api/buy/items/" + userId;
+   // $http.get("http://localhost:49883/api/buy/items/74e8220e-35e1-440e-8308-71820009916c")
+    $http.get(apiLink)
+    .success(function(response) {$scope.items = response;});
 });
+

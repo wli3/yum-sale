@@ -1,4 +1,5 @@
-﻿@{
+﻿@using YumSale.Models
+@{
     Layout = "";
     ViewBag.Title = "Items";
 }
@@ -17,6 +18,8 @@
 <body>
     <div class="container">
         <h2>Talk Details</h2>
+        <input type="hidden" id="baseLink" data-value="@Helper.GetSaleBaseLink()" />
+        <input type="hidden" id="userId" data-value="@ViewBag.userId" />
         <div class="row" ng-controller="eventController">
             <table class="table table-condensed table-hover">
                 <tr>
@@ -26,12 +29,10 @@
                     <th>Venue</th>
                     <th>Duration</th>
                 </tr>
-                <tr ng-repeat="talk in talks">
-                    <td> {{talk.id}}</td>
-                    <td> {{talk.name}}</td>
-                    <td> {{talk.speaker}}</td>
-                    <td> {{talk.venue}}</td>
-                    <td> {{talk.duration}}</td>
+                <tr ng-repeat="i in items">
+                    <td> {{i.name}}</td>
+                    <td> {{i.descrption}}</td>
+                    <td>{{link}}</td>
                 </tr>
             </table>
 
