@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "";
+    ViewBag.Title = "Items";
+}
+
+<html ng-app="eventModule">
+<head>
+    <title>Hello world with AngularJS</title>
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/metro-bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="~/Scripts/Events/eventModule.js"></script>
+    <script src="~/Scripts/Events/eventController.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Talk Details</h2>
+        <div class="row" ng-controller="eventController">
+            <table class="table table-condensed table-hover">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Speaker</th>
+                    <th>Venue</th>
+                    <th>Duration</th>
+                </tr>
+                <tr ng-repeat="talk in talks">
+                    <td> {{talk.id}}</td>
+                    <td> {{talk.name}}</td>
+                    <td> {{talk.speaker}}</td>
+                    <td> {{talk.venue}}</td>
+                    <td> {{talk.duration}}</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</body>
+</html>
