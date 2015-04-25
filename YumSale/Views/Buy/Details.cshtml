@@ -1,4 +1,5 @@
-﻿@model YumSale.Models.BuyHoldViewModel
+﻿@using System.Net
+@model YumSale.Models.BuyHoldViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -8,26 +9,27 @@
 
 <div>
     <h4>Item</h4>
+
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <dl class="dl-horizontal">
-
+            <p>
 
             <dd>
                 @{
-                    try
-                    {
-                        if (Model.ImageUrl != null)
-                        {
-                            var webRequest = WebRequest.Create(Model.ImageUrl);
-                            var webResponse = webRequest.GetResponse();
-                            <img src=@Model.ImageUrl alt="Item Image" width="300"/>
-                        }
-                    }
-                    catch (WebException ex)
-                    {
-                    }
+        try
+        {
+            if (Model.ImageUrl != null)
+            {
+                var webRequest = WebRequest.Create(Model.ImageUrl);
+                var webResponse = webRequest.GetResponse();
+                <img src=@Model.ImageUrl alt="Item Image" width="300" />
+            }
+        }
+        catch (WebException ex)
+        {
+        }
                 }
             </dd>
 
@@ -37,7 +39,7 @@
             </dt>
 
             <dd>
-            @Html.DisplayFor(model => model.Name)
+                @Html.DisplayFor(model => model.Name)
             <dt>
 
                 @Html.DisplayNameFor(model => model.Descrption)
@@ -54,40 +56,49 @@
                 @Html.DisplayFor(model => model.HoldLongDay) days @Html.DisplayFor(model => model.HoldLongLessThanDay.Hours) hours
             </dd>
 
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-            @Html.HiddenFor(model => model.ItemId)
-            <div class="form-group">
-                @Html.LabelFor(model => model.BuyerName, new {@class = "control-label col-md-2"})
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BuyerName, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.BuyerName, "", new {@class = "text-danger"})
-                </div>
-            </div>
+            </p>
+            <p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Your Contact</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ItemId)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.BuyerName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.BuyerName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuyerName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-            <div class="form-group">
-                @Html.LabelFor(model => model.Contact, new {@class = "control-label col-md-2"})
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Contact, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Contact, "", new {@class = "text-danger"})
-                </div>
-            </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Contact, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-            <div class="form-group">
-                @Html.LabelFor(model => model.Token, new {@class = "control-label col-md-2"})
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Token, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Token, "", new {@class = "text-danger"})
-                </div>
-            </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Token, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Token, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Token, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Request Item" class="btn btn-default"/>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Request Item" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
+            </p>
         </dl>
     }
 </div>
