@@ -55,13 +55,13 @@ namespace YumSale.Controllers
                 {
                     this.Flash("Error", "Sorry, the item does not exist or it already has a buyer");
                     return RedirectToAction("Index", new RouteValueDictionary(
-                        new { controller = "Buy", action = "Index", Id = userId }));
+                        new {controller = "Buy", action = "Index", Id = userId}));
                 }
                 _repository.AddBuyerToItem(buyer, item);
             }
             this.Flash("success", "Your request is sent. The seller may contact you later.");
             return RedirectToAction("Index", new RouteValueDictionary(
-                new { controller = "Buy", action = "Index", Id = userId }));
+                new {controller = "Buy", action = "Index", Id = userId}));
         }
     }
 }

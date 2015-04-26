@@ -2,23 +2,20 @@ using System;
 using System.Web.Http;
 using System.Web.Mvc;
 using YumSale.Areas.HelpPage.ModelDescriptions;
-using YumSale.Areas.HelpPage.Models;
 
 namespace YumSale.Areas.HelpPage.Controllers
 {
     /// <summary>
-    /// The controller that will handle requests for the help page.
+    ///     The controller that will handle requests for the help page.
     /// </summary>
     public class HelpController : Controller
     {
         private const string ErrorViewName = "Error";
-
         // property
         protected static HttpConfiguration Configuration
         {
             get { return GlobalConfiguration.Configuration; }
         }
-
 
         public ActionResult Index()
         {
@@ -30,7 +27,7 @@ namespace YumSale.Areas.HelpPage.Controllers
         {
             if (!String.IsNullOrEmpty(apiId))
             {
-                HelpPageApiModel apiModel = Configuration.GetHelpPageApiModel(apiId);
+                var apiModel = Configuration.GetHelpPageApiModel(apiId);
                 if (apiModel != null)
                 {
                     return View(apiModel);
@@ -44,7 +41,7 @@ namespace YumSale.Areas.HelpPage.Controllers
         {
             if (!String.IsNullOrEmpty(modelName))
             {
-                ModelDescriptionGenerator modelDescriptionGenerator = Configuration.GetModelDescriptionGenerator();
+                var modelDescriptionGenerator = Configuration.GetModelDescriptionGenerator();
                 ModelDescription modelDescription;
                 if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
                 {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
 using YumSale.Models;
@@ -17,7 +10,7 @@ namespace YumSale.Controllers.Api
         private readonly IRepository _repository = new Repository();
 
         /// <summary>
-        /// Get the specific user's all items
+        ///     Get the specific user's all items
         /// </summary>
         /// <param name="id"> user id</param>
         /// <returns></returns>
@@ -30,7 +23,7 @@ namespace YumSale.Controllers.Api
         }
 
         /// <summary>
-        /// Get the specific item
+        ///     Get the specific item
         /// </summary>
         /// <param name="userId">user id</param>
         /// <param name="itemId">specific user's item id</param>
@@ -51,14 +44,14 @@ namespace YumSale.Controllers.Api
         }
 
         /// <summary>
-        /// post buyer information to the item
+        ///     post buyer information to the item
         /// </summary>
         /// <param name="userId">user id that item belong</param>
         /// <param name="itemId"></param>
         /// <param name="buyHoldViewModel">buyer information</param>
         /// <returns></returns>
         [ActionName("Items")]
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof (void))]
         public IHttpActionResult PostItem(string userId, int itemId, BuyHoldViewModel buyHoldViewModel)
         {
             if (ModelState.IsValid)
@@ -83,6 +76,5 @@ namespace YumSale.Controllers.Api
             }
             base.Dispose(disposing);
         }
-
     }
 }

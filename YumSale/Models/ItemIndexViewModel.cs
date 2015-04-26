@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 using System.Linq;
 
 namespace YumSale.Models
@@ -18,7 +17,7 @@ namespace YumSale.Models
             HasBuyer = item.HasBuyer();
             if (item.Buyer != null && item.HoldTime != null)
             {
-                DateTime maxiumTime = (DateTime) item.HoldTime;
+                var maxiumTime = (DateTime) item.HoldTime;
                 maxiumTime = maxiumTime.AddDays(item.HoldLongDay).Add(item.HoldLongLessThanDay);
                 if (maxiumTime < DateTime.Now)
                 {
@@ -40,15 +39,14 @@ namespace YumSale.Models
         [Display(Name = "Maximum time a buyer can hold")]
         public TimeSpan HoldLong { get; set; }
 
-        
         public int? BuyerId { get; set; }
+
         [Display(Name = "Buyer Name")]
         public string BuyerName { get; set; }
 
         public bool HasBuyer { get; set; }
-
         public bool BuyerTimeOut { get; set; }
- 
+
         public static List<ItemIndexViewModel> MapItemsForIndexView(List<Item> items)
         {
             var itemIndexViewModels = (from item in items
