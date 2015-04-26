@@ -6,38 +6,34 @@
 
 <html ng-app="eventModule">
 <head>
-    <title>Hello world with AngularJS</title>
+    <title>Sales - Yumsale</title>
     <script src="~/Scripts/jquery-2.1.3.min.js"></script>
-    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
-    <link href="~/Content/metro-bootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/metro-bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="~/Scripts/Events/eventModule.js"></script>
     <script src="~/Scripts/Events/eventController.js"></script>
+    <link href="~/Content/RichClient.css" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
-    <h2>Talk Details</h2>
-    <input type="hidden" id="baseLink" data-value="@Helper.GetSaleBaseLink()"/>
-    <input type="hidden" id="userId" data-value="@ViewBag.userId"/>
-    <div class="row" ng-controller="eventController">
-        <table class="table table-condensed table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Speaker</th>
-                <th>Venue</th>
-                <th>Duration</th>
-            </tr>
-            <tr ng-repeat="i in items">
-                <td> {{i.name}}</td>
-                <td> {{i.descrption}}</td>
-                <td>{{link}}</td>
-            </tr>
-        </table>
-
+    <div class="container">
+        <h2>Sales</h2>
+        <input type="hidden" id="baseLink" data-value="@Helper.GetSaleBaseLink()" />
+        <input type="hidden" id="userId" data-value="@ViewBag.userId" />
+        <div class="row" ng-controller="eventController">
+            <a ng-repeat="i in items" href="" class="btn btn-block btn-lg btn-default">
+                <div class="post-container">
+                    <div class="post-thumb"><img src={{i.imageUrl}} alt="Item Image" width="300" /></div>
+                    <div class="post-content">
+                        <h3 class="post-title">{{i.name}}</h3>
+                    </div>
+                    <p>{{i.descrption}}</p>
+                    <p>
+                        You can hold {{i.holdLongDay}} days and {{i.holdLongLessThanDay}}
+                    </p>
+                </div>
+            </a>
+        </div>
     </div>
-</div>
-
 </body>
 </html>
