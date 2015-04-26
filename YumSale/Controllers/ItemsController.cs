@@ -27,6 +27,7 @@ namespace YumSale.Controllers
             var saleLink = Helper.GetSaleBaseLink();
             saleLink = saleLink + "/buy/index/" + currentUserId;
             ViewBag.SaleLink = saleLink;
+            ViewBag.RichClientLink = Helper.GetSaleBaseLink() + "/richclient/items/" + currentUserId;
             return View(itemIndexViewModels);
         }
 

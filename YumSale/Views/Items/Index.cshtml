@@ -1,5 +1,5 @@
 ﻿@using MvcFlashMessages
-@model IEnumerable<YumSale.Models.ItemIndexViewModel>
+@model System.Collections.Generic.IEnumerable<YumSale.Models.ItemIndexViewModel>
 @Html.RenderFlash()
 
 @{
@@ -10,6 +10,10 @@
 
 <p>
     SaleLink <strong>@ViewBag.SaleLink</strong>
+</p>
+
+<p>
+    Rich Client <strong>@ViewBag.RichClientLink</strong>
 </p>
 
 <p>
